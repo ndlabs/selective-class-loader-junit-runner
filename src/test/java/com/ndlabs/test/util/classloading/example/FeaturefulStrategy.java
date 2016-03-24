@@ -1,17 +1,17 @@
 package com.ndlabs.test.util.classloading.example;
 
-import com.ndlabs.test.util.classloading.optional.TestFeature;
+import com.ndlabs.test.util.classloading.optional.Feature;
 
 public class FeaturefulStrategy implements Strategy {
 
-	private TestFeature testFeature;
+	private Feature feature;
 
-	public FeaturefulStrategy(TestFeature testFeature) {
+	public FeaturefulStrategy(Feature feature) {
 		//implement the strategy using the feature if appropriate lib is on the classpath
-		this.testFeature = testFeature;
+		this.feature = feature;
 	}
 
-	public TestFeature getTestFeature() {
-		return testFeature;
+	public Feature getFeature() {
+		return feature;
 	}
 }
