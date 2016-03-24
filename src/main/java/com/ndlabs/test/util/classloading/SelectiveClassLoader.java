@@ -11,13 +11,8 @@ public class SelectiveClassLoader extends URLClassLoader {
 
 	private final Set<String> bannedClassNamePatterns = new HashSet<>();
 	private final Set<String> sharedClassNamePatterns = new HashSet<>();
-	private final Map<String, Class<?>> asd = Collections.synchronizedMap(new HashMap<String, Class<?>>());
 	private final ClassLoader parent;
 	private final ClassLoader extClassLoader;
-
-	public SelectiveClassLoader(Set<String> bannedClassNamePatterns) {
-		this(bannedClassNamePatterns, null);
-	}
 
 	public SelectiveClassLoader(Set<String> bannedClassNamePatterns, Set<String> sharedClassNamePatterns) {
 		super(((URLClassLoader) getSystemClassLoader()).getURLs());

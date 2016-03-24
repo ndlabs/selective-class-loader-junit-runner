@@ -9,15 +9,15 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(SelectiveClassLoaderRunner.class)
-@BanClassNamesStartingWith("com.ndlabs.test.util.classloading.optional.Feature")
-public class SelectiveClassLoaderRunnerTestWithBannedClass {
+public class SelectiveClassLoaderRunnerWithClassTest {
 
 	@Test
-	public void testOptionalFeatureNotUsed() {
+	public void testOptionalFeatureUsed() {
 		FeatureConsumer consumer = new FeatureConsumer();
 		Strategy strategy = consumer.chooseStrategy();
 
-		Assert.assertFalse(strategy instanceof FeaturefulStrategy);
-		Assert.assertTrue(strategy instanceof SimpleInternalStrategy);
+		Assert.assertFalse(strategy instanceof SimpleInternalStrategy);
+		Assert.assertTrue(strategy instanceof FeaturefulStrategy);
+		Assert.assertNotNull(((FeaturefulStrategy) strategy).getFeature());
 	}
 }

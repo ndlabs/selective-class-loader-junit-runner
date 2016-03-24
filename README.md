@@ -12,16 +12,16 @@ difficulties doing that.
 
 Suppose the code you wanted to test looks like this:
 ```java
-	private static boolean isFeatureClassPresent = ClassUtils.isPresent("com.somelibrary.Feature",
-			FeatureConsumer.class.getClassLoader());
+private static boolean isFeatureClassPresent = ClassUtils.isPresent("com.somelibrary.Feature",
+		FeatureConsumer.class.getClassLoader());
 
-	public Strategy chooseStrategy() {
-		if (isFeatureClassPresent) {
-			return new FeaturefulStrategy(new Feature());
-		} else {
-			return new SimpleInternalStrategy();
-		}
+public Strategy chooseStrategy() {
+	if (isFeatureClassPresent) {
+		return new FeaturefulStrategy(new Feature());
+	} else {
+		return new SimpleInternalStrategy();
 	}
+}
 ```
 
 It can be quite simple to test the path of execution that does use the "Feature" class. In most cases it 
@@ -34,7 +34,6 @@ SelectiveClassLoaderJUnitRunner will come handy.
 @RunWith(SelectiveClassLoaderRunner.class)
 @BanClassNamesStartingWith("com.somelibrary.Feature")
 public class SelectiveClassLoaderRunnerWithBannedClassTest {
-
 	@Test
 	public void testOptionalFeatureNotUsed() {
 		FeatureConsumer consumer = new FeatureConsumer();
